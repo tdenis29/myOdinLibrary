@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+header{
+    height: 9.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+main{
+    display: grid;
+    grid-template-columns: 4;
+}
+.book-section{
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.reading-tracker-section{
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+.book-container{
+    display: flex;
+    flex-direction: column;
+}
