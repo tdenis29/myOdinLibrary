@@ -1,3 +1,8 @@
+const modalClose = document.getElementById('modalClose');
+const overlay = document.getElementById('overlay');
+const addNewBook = document.getElementById('addNewBook');
+const send = document.getElementById('send');
+const form = document.getElementById("form");
 //Another OOP library!
 let myLibrary = [];
 
@@ -12,10 +17,30 @@ class Book {
         };
     }
 }
-//add book to myLibrary array
-function addBook(){
+//addNewBook to open modal window
+addNewBook.addEventListener('click', (e) => {
+    overlay.style.display = 'block';
+})
+//add book to myLibrary array after form is filled onsubmit
 
-}
+form.addEventListener('submit', function addBookToLibrary(e){
+    e.preventDefault();
+    let bookTitle = document.getElementById('bookTitle').value;
+    let bookAuthor = document.getElementById('bookAuthor').value;
+    let bookPages = document.getElementById('bookPages').value;
+    let bookRead = document.getElementById('read').value;
+    if(bookTitle !== "" &&
+        bookAuthor !== ""  && 
+        bookPages !== 0 || bookPages !== ""){
+            let book = new Book(bookTitle, bookAuthor, bookPages, bookRead);
+            console.log(book)
+            myLibrary.push(book)
+            overlay.style.display = "none";
+        }
+        console.log(myLibrary)
+    })
+
+
 //remove book from array
 function removeBook(){
 
@@ -36,7 +61,9 @@ function saveBook(){
 function loadBooks(){
 
 }
+//Modal Close
+modalClose.addEventListener('click', () => {
+    overlay.style.display = "none"
+    });
 //book instance
-const book1 = new Book("The Hobbit", "J.R.R Tolkein", "295", "Yes");
 
-console.log(book1.logInfo());

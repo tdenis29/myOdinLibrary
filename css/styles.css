@@ -4,7 +4,12 @@
     margin: 0;
     list-style-type: none;
 }
-
+body{
+    padding: 2rem 0;
+    font-size: 1.125rem;
+    position: relative;
+    height: 100vh;
+}
 header{
     height: 9.25rem;
     display: flex;
@@ -16,6 +21,143 @@ main{
     grid-template-columns: 4;
 }
 .book-section{
+    width: 100%;
+}
+.book-section > div > h2{
+    margin-bottom: 1.5rem;
+}
+.reading-tracker-section{
+    width: 100%;
+}
+.reading-tracker-section > h2{
+    margin-bottom: 1.5rem;
+}
+
+.book-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
+    grid-gap: 1.25rem;
+}
+.book-card{
+    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.book-card > h3{
+    margin-bottom: 4rem;
+    margin-top: .5rem;
+}
+.book-card >p{
+    margin: .5rem 0;
+}
+.check-con{
+    margin: .5rem 0;
+}
+.book-button-con{
+    margin: .5rem 0;
+}
+.book-button-con > button{
+    width: 4rem;
+    height: 2rem;
+}
+/* Modal */
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(100, 100, 100, 0.4);
+        display: none;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        }
+        .modal {
+            width: 300px;
+            height: 400px;
+            margin: 10% auto auto;
+            position: relative;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #778;
+            border-radius: 5px;
+            padding: 30px 20px;
+            z-index: 1;
+            }
+            .modal-content{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto;
+                text-align: center;
+            }
+            /* Text fields */
+            .textinput input{
+                display: flex;
+                width: 95%;
+                height: 3rem;
+                font-size: 1.125rem;
+                padding-left: .5rem;
+                background-color: whitesmoke;
+                border: none;
+                transition: all .5s ease-out;
+                margin: .5rem;
+                flex: 1;
+                }
+            .textinput{
+                margin-bottom: 1.5rem;
+            }
+            input::placeholder {
+                font-style: italic;
+            }
+            .modal-close {
+                position: absolute;
+                right: 15px;
+                top: 5px;
+                cursor: pointer;
+                background: none;
+                border: black solid 1px;
+                width: 2.5rem;
+                height: 2.5rem;
+                }
+                /* modal buttons */
+                .prev,
+                .next {
+                  cursor: pointer;
+                  position: absolute;
+                  top: 50%;
+                  width: auto;
+                  padding: 16px;
+                  margin-top: -50px;
+                  color: white;
+                  font-weight: bold;
+                  font-size: 36px;
+                  transition: 0.6s ease;
+                  border-radius: 0 3px 3px 0;
+                  user-select: none;
+                  -webkit-user-select: none;
+                }
+                .addBook{
+                    margin: 2rem 0;
+                    width: 4rem;
+                    height: 2.5rem;
+                }
+                .addNewBook{
+                    position: absolute;
+                    bottom: 5;
+                    right: 0;
+                    margin: 2rem 0;
+                    width: 4rem;
+                    height: 2.5rem;
+                }
+ 
+@media (min-width: 768px){
+.book-section{
     display: grid;
     grid-column-start: 1;
     grid-column-end: 3;
@@ -24,7 +166,9 @@ main{
     grid-column-start: 3;
     grid-column-end: 4;
 }
-.book-container{
-    display: flex;
-    flex-direction: column;
+}
+
+.modal{
+    width: 400px;
+    height: 500px;
 }
