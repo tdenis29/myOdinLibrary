@@ -62,25 +62,27 @@ form.addEventListener('submit', function addBookToLibrary(e){
             myLibrary.push(book)
             overlay.style.display = "none";
         }
+        //display new book after myLibrary.push()
         dispalyLibrary();
         //reset form after preventdefault()
         form.reset();
-        //calls get cards for global reference to remove btns
-        getCards();
+        //calls get cards for lexical reference to remove btns
+        let usetheseBtn = getCards();
         //apply event handler to newly created buttons
-        removeBtns.forEach(applyEvent);
+        usetheseBtn.forEach(applyEvent);
     });
 
 
-//this function gets current button elements and returns as global variable to pass to applyEvent()
+//this function gets current button elements and returns as a variable to pass to applyEvent()
 function getCards(){
-removeBtns = document.querySelectorAll('.remove');
+let removeBtns = document.querySelectorAll('.remove');
 Array.from(removeBtns);
 return removeBtns;
 }
 function applyEvent(){
+    let usetheseBtn = getCards();
     //mylibSplice is a named function for this reference on clicked button to remove with parentNode
-    removeBtns.forEach(btn => {btn.addEventListener('click', function mylibSplice() {
+    usetheseBtn.forEach(btn => {btn.addEventListener('click', function mylibSplice() {
         pos = btn.dataset.index;
         parseInt(pos);
         myLibrary.splice(pos, 1);
