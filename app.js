@@ -1,39 +1,39 @@
 const modalClose = document.getElementById('modalClose');
 const overlay = document.getElementById('overlay');
 const addNewBook = document.getElementById('addNewBook');
-
 const send = document.getElementById('send');
 const form = document.getElementById("form");
+
 //Another OOP library!
 let myLibrary = [
-    {
-    title: "The Hobbit",
-    author: "JRR Tolkien",
-    pages: 295,
-    read: "on",
-    },
-    {
-    title: "Dune",
-    author: "Herbert",
-    pages: 500,
-    read: "off",
-    },
-    {
-    title: "Great Expectations",
-    author: "Charles Dickens",
-    pages: 650,
-    read: "on",
-    },
-    {
-    title: "50 Shades Of Grey",
-    author: "Who Cares",
-    pages: 10,
-    read: "off",
-    }
+    // {
+    // title: "The Hobbit",
+    // author: "JRR Tolkien",
+    // pages: 295,
+    // read: "on",
+    // },
+    // {
+    // title: "Dune",
+    // author: "Herbert",
+    // pages: 500,
+    // read: "off",
+    // },
+    // {
+    // title: "Great Expectations",
+    // author: "Charles Dickens",
+    // pages: 650,
+    // read: "on",
+    // },
+    // {
+    // title: "50 Shades Of Grey",
+    // author: "Who Cares",
+    // pages: 10,
+    // read: "off",
+    // }
 ];
 
 class Book {
-    constructor(title, author, pages, read, readBookStatus) {
+    constructor(title, author, pages, read,) {
             this.title = title,
             this.author = author,
             this.pages = pages,
@@ -55,36 +55,37 @@ form.addEventListener('submit', function addBookToLibrary(e){
     let bookTitle = document.getElementById('bookTitle').value;
     let bookAuthor = document.getElementById('bookAuthor').value;
     let bookPages = document.getElementById('bookPages').value;
-    let bookRead = document.getElementById('read').value;
     if(bookTitle !== "" &&
         bookAuthor !== ""  && 
         bookPages !== 0 || bookPages !== ""){
-            let book = new Book(bookTitle, bookAuthor, bookPages, bookRead);
-            
+            let book = new Book(bookTitle, bookAuthor, bookPages);
             myLibrary.push(book)
             overlay.style.display = "none";
         }
         dispalyLibrary();
+        //reset form after preventdefault()
         form.reset();
+        //calls get cards for global reference to remove btns
+        getCards();
+        //apply event handler to newly created buttons
+        removeBtns.forEach(applyEvent);
     });
 
 
-//remove book from array
-let removeBtns = document.querySelectorAll('.book-card');
-Array.from(removeBtns)
-removeBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+//this function gets current button elements and returns as global variable to pass to applyEvent()
+function getCards(){
+removeBtns = document.querySelectorAll('.remove');
+Array.from(removeBtns);
+return removeBtns;
+}
+function applyEvent(){
+    //mylibSplice is a named function for this reference on clicked button to remove with parentNode
+    removeBtns.forEach(btn => {btn.addEventListener('click', function mylibSplice() {
         pos = btn.dataset.index;
-        parseInt(pos)
-        
+        parseInt(pos);
         myLibrary.splice(pos, 1);
-        console.log(myLibrary.length)
-    })
-})
-// function removeBook(){
-//     e.target.dataset.index = index;
-//     myLibrary.splice(index, 1);
-// }
+        this.parentNode.parentNode.remove();
+})})};
 
 //loop through myLibrary array to display each book
 function dispalyLibrary(){
@@ -109,11 +110,7 @@ function dispalyLibrary(){
                     <button class="remove">Remove</button>
                 </div>  
             </div>   
-                `
-                for (const property in book) {
-                    console.log(`${property}: ${book[property]}`);
-                  }
-                    
+                `               
     });
     bookContainer.innerHTML = bookHTML;
 }
