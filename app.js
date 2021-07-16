@@ -5,7 +5,6 @@ const send = document.getElementById('send');
 const form = document.getElementById("form");
 const localStorage = window.localStorage;
 
-
 //Another OOP library!
 let myLibrary = [];
 
@@ -68,7 +67,7 @@ function applyEvent(){
     let usetheseBtn = getCards();
     //mylibSplice is a named function for !this! reference on clicked button to remove with parentNode
     usetheseBtn.forEach(btn => {btn.addEventListener('click', function mylibSplice() {
-        pos = btn.dataset.index;
+        let pos = btn.dataset.index;
         parseInt(pos);
         myLibrary = myLibrary.slice(pos, 1) 
         this.parentNode.parentNode.remove();
@@ -89,7 +88,7 @@ function dispalyLibrary(){
                 <p>${pages}</p>
                 <div class="check-con">
                     <label for="read">Read?</label>
-                    `;if(book.read === true){
+                    `;if(read === true){
                        bookHTML += `<input id="checkMe" type="checkbox" checked>`  
                     }else{
                        bookHTML += `<input id="checkMe" type="checkbox">`
@@ -104,14 +103,7 @@ function dispalyLibrary(){
              
     });
     bookContainer.innerHTML = bookHTML;
-    // myLibrary.forEach(book => {
-    //     if(document.getElementById('bookTitle').textContent === book.title){
-    //         return
-    //     } else{
-    //     book.readBookStatus();
-    //     }
-    // })
-}
+};
 //SET books to local sotrage 
 function saveBook(){
 
