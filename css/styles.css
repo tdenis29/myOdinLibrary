@@ -8,40 +8,50 @@ html{
     height: 100%;
 }
 body{
-    padding: 2rem 0;
+
     font-size: 1.125rem;
     position: relative;
     height: 100%;
 }
 header{
     height: 9.25rem;
+    background: #2C363F;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    color: #F2F5EA;
+    background-image:
+    linear-gradient(to bottom, rgba(44, 54, 63, .5), rgba(231, 90, 124, .5)),
+    url('../landing.jpeg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+ 
 }
-main{
-    display: grid;
-    grid-template-columns: 4;
-    height: 50%;
+.addNewBook{
+    display: block;
+    height: auto;
+    width: 10%;
+    height: 2rem;
+    margin: 1rem;
+    border: rgba(231, 90, 124, 1) solid 1px;
 }
+
 .book-section{
     width: 100%;
-    height: 100%;
+  
 }
-.book-section > div > h2{
-    margin-bottom: 1.5rem;
-}
-.reading-tracker-section{
-    width: 100%;
-    height: 50%;
-    background-color: red;
-}
-.reading-tracker-section > h2{
-    margin-bottom: 1.5rem;
+h2{
+    margin: 0 auto;
+    font-size: 4rem;;
 }
 
 .book-container{
     display: grid;
+    max-width: 100%;
+    margin: 0 auto;
     grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
     grid-gap: 1.25rem;
 }
@@ -51,6 +61,7 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 4px 8px #2C363F;
 }
 .book-card > h3{
     margin-bottom: 4rem;
@@ -154,25 +165,16 @@ main{
                     width: 4rem;
                     height: 2.5rem;
                 }
-                .addNewBook{
-                    position: absolute;
-                    bottom: 5;
-                    right: 0;
-                    margin: 2rem 0;
-                    width: 4rem;
-                    height: 2.5rem;
-                }
+             
  
 @media (min-width: 768px){
-.book-section{
-    display: grid;
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-.reading-tracker-section{
-    grid-column-start: 3;
-    grid-column-end: 4;
-}
+    .book-container{
+        display: grid;
+        max-width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
+        grid-gap: 1.25rem;
+    }
+
 }
 
 .modal{
