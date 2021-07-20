@@ -58,11 +58,12 @@ document.getElementById("book-container").addEventListener('click', (button) => 
         button.target.parentNode.parentNode.remove();
 } else if (button.target.nodeName == "INPUT"){
         let pos = button.target.dataset.index
-        let update = myLibrary[pos]
-        if(update.read){
-            update.read = false
-        } else {
+        console.log(pos)
+        let update = myLibrary[pos];
+        if(!update.read){
             update.read = true;
+        } else {
+            update.read = false;
         }
         saveBook();
 }
@@ -77,14 +78,14 @@ function dispalyLibrary(arr){
         let pages = book.pages;
         let read = book.read;
         bookHTML += `
-        <div class="book-card" id="bookCard" data-index="${index}">
+        <div class="book-card" id="bookCard">
         <h3 id="bookTitle">${title}</h3>
             <p>${author}</p>
                 <p>${pages}</p>
                 <div class="check-con">
                     <label for="read">Read?</label>
                     `;if(read === true){
-                       bookHTML += `<input id="checkMe" type="checkbox" checked>`  
+                       bookHTML += `<input id="checkMe" data-index="${index}" type="checkbox" checked>`  
                     }else{
                        bookHTML += `<input id="checkMe" data-index="${index}" type="checkbox">`
                     }
