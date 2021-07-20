@@ -15,9 +15,8 @@ class Book {
             this.pages = pages,
             this.read = read
     }
-  
+
         };
-    
 
 // window.addEventListener("onload"); //loadbooks);
 //addNewBook to open modal window
@@ -33,7 +32,7 @@ form.addEventListener('submit', function addBookToLibrary(e){
     let bookPages = document.getElementById('bookPages').value;
     let bookRead = document.getElementById("readStatus").checked;
     if(bookTitle !== "" &&
-        bookAuthor !== ""  && 
+        bookAuthor !== ""  &&
         bookPages !== 0 || bookPages !== ""){
             let book = new Book(bookTitle, bookAuthor, bookPages, bookRead);
             myLibrary.push(book);
@@ -44,7 +43,7 @@ form.addEventListener('submit', function addBookToLibrary(e){
         dispalyLibrary(myLibrary)
         //reset form after preventdefault()
         form.reset();
- 
+
     });
 
 document.getElementById("book-container").addEventListener('click', (button) => {
@@ -85,7 +84,7 @@ function dispalyLibrary(arr){
                 <div class="check-con">
                     <label for="read">Read?</label>
                     `;if(read === true){
-                       bookHTML += `<input id="checkMe" data-index="${index}" type="checkbox" checked>`  
+                       bookHTML += `<input id="checkMe" data-index="${index}" type="checkbox" checked>`
                     }else{
                        bookHTML += `<input id="checkMe" data-index="${index}" type="checkbox">`
                     }
@@ -93,14 +92,14 @@ function dispalyLibrary(arr){
                         </div>
                         <div class="book-button-con">
                             <button data-index="${index}" class="remove">Remove</button>
-                        </div>  
-                    </div>   
-             `;   
-             
+                        </div>
+                    </div>
+             `;
+
     });
     bookContainer.innerHTML = bookHTML;
 };
-//SET books to local sotrage 
+//SET books to local sotrage
 function saveBook(){
    localStorage.setItem('theLibrary', JSON.stringify(myLibrary))
 }
@@ -110,7 +109,7 @@ function loadBooks(){
         let savedLibrary = JSON.parse(localStorage.getItem("theLibrary") || "[]");
         dispalyLibrary(savedLibrary);
         myLibrary = savedLibrary;
-        
+
     }else{
         return
     }
@@ -140,5 +139,5 @@ modalClose.addEventListener('click', () => {
 //         console.log(myLibrary)
 //         saveBook();
 //         this.parentNode.parentNode.remove();
-        
+
 // })})};
