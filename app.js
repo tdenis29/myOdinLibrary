@@ -44,31 +44,9 @@ form.addEventListener('submit', function addBookToLibrary(e){
         dispalyLibrary(myLibrary)
         //reset form after preventdefault()
         form.reset();
-        //calls get cards for lexical reference to remove btns
-        // let usetheseBtn = getCards();
-        //apply event handler to newly created buttons
-        // usetheseBtn.forEach(applyEvent);
-        
+ 
     });
-//this function gets current button elements and returns as a variable to pass to applyEvent()
-// function getCards(){
-// let removeBtns = document.querySelectorAll('.remove');
-// Array.from(removeBtns);
-// return removeBtns;
-// }
-// function applyEvent(){
-//     let usetheseBtn = getCards();
-//     //remove child
-//     //mylibSplice is a named function for !this! reference on clicked button to remove with parentNode
-//     usetheseBtn.forEach(btn => {btn.addEventListener('click', function mylibSplice() {
-//         let pos = btn.dataset.index;
-//         parseInt(pos);
-//         let removed = myLibrary.splice(pos, 1);
-//         console.log(myLibrary)
-//         saveBook();
-//         this.parentNode.parentNode.remove();
-        
-// })})};
+
 document.getElementById("book-container").addEventListener('click', (button) => {
     button.stopPropagation()
     if(button.target.nodeName === "BUTTON"){
@@ -78,7 +56,17 @@ document.getElementById("book-container").addEventListener('click', (button) => 
         let removed = myLibrary.splice(pos, 1);
         saveBook();
         button.target.parentNode.parentNode.remove();
-}})
+} else if (button.target.nodeName == "INPUT"){
+        let pos = button.target.dataset.index
+        let update = myLibrary[pos]
+        if(update.read){
+            update.read = false
+        } else {
+            update.read = true;
+        }
+        saveBook();
+}
+})
 //loop through myLibrary array to display each book
 function dispalyLibrary(arr){
     const bookContainer = document.getElementById("book-container");
@@ -98,7 +86,7 @@ function dispalyLibrary(arr){
                     `;if(read === true){
                        bookHTML += `<input id="checkMe" type="checkbox" checked>`  
                     }else{
-                       bookHTML += `<input id="checkMe" type="checkbox">`
+                       bookHTML += `<input id="checkMe" data-index="${index}" type="checkbox">`
                     }
                 bookHTML += `
                         </div>
@@ -120,8 +108,8 @@ function loadBooks(){
     if(localStorage !== true){
         let savedLibrary = JSON.parse(localStorage.getItem("theLibrary") || "[]");
         dispalyLibrary(savedLibrary);
-        // let usetheseBtn = getCards();
-        // usetheseBtn.forEach(applyEvent);
+        myLibrary = savedLibrary;
+        
     }else{
         return
     }
@@ -134,3 +122,22 @@ modalClose.addEventListener('click', () => {
 
 
 
+//this function gets current button elements and returns as a variable to pass to applyEvent()
+// function getCards(){
+// let removeBtns = document.querySelectorAll('.remove');
+// Array.from(removeBtns);
+// return removeBtns;
+// }
+// function applyEvent(){
+//     let usetheseBtn = getCards();
+//     //remove child
+//     //mylibSplice is a named function for !this! reference on clicked button to remove with parentNode
+//     usetheseBtn.forEach(btn => {btn.addEventListener('click', function mylibSplice() {
+//         let pos = btn.dataset.index;
+//         parseInt(pos);
+//         let removed = myLibrary.splice(pos, 1);
+//         console.log(myLibrary)
+//         saveBook();
+//         this.parentNode.parentNode.remove();
+        
+// })})};
