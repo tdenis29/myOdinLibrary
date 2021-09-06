@@ -9,13 +9,13 @@
     <body id="home">    
             <header>
 	            <h1>Library App</h1>
-                <button class="addNewBook" id="addNewBook">Add New Book</button>
+              
             </header>
             <div class="overlay hidden" id="overlay">
                 <div class="modal">
                     <h4>Add New Book</h4>
                     <hr>
-                  <form id="form">
+                  <form id="form" novalidate>
                     <div class="textinput">
                         <label for="book-title">Book Title*</label>
                         <input type="text" id="bookTitle" name="book-title" required aria-required="true" placeholder="Book Title">
@@ -28,16 +28,17 @@
 
                     <div class="textinput">
                         <label for="pages">Total Pages</label>
-                        <input type="text" id="bookPages" name="pages" required aria-required="true" placeholder="Total Pages">
+                        <input type="number" id="bookPages" name="pages" required aria-required="true" placeholder="Total Pages">
                     </div>
 
                     <div class="input-field">
                         <label for="read-status"> Read Status</label>
                         <input type="checkbox" id="readStatus" name="read-status">
                     </div>
-               
-                        <button type="submit" class="addBook" id="send">Add Book</button>
-                        <button type="reset">Reset</button>
+                        <div class="button-con">
+                            <button type="submit" class="addBook" id="send">Add Book</button>
+                            <button class="reset" type="reset">Reset</button>
+                         </div>
                         <button class="modal-close" id="modalClose">X</button>
                   </form>
                 </div>
@@ -45,6 +46,7 @@
         <main>
             <section class="book-section">
                 <h2>Your Library</h2>
+                <button class="addNewBook" id="addNewBook">Add New Book</button>
                 <div class="book-container" id="book-container">
                    
                 

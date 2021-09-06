@@ -5,7 +5,6 @@ const send = document.getElementById('send');
 const form = document.getElementById("form");
 const localStorage = window.localStorage;
 
-//Another OOP library!
 let myLibrary = [];
 
 class Book {
@@ -33,23 +32,23 @@ form.addEventListener('submit', function addBookToLibrary(e){
     let bookRead = document.getElementById("readStatus").checked;
     if(bookTitle !== "" &&
         bookAuthor !== ""  &&
-        bookPages !== 0 || bookPages !== ""){
+        bookPages !== 0){
             let book = new Book(bookTitle, bookAuthor, bookPages, bookRead);
             myLibrary.push(book);
             overlay.style.display = "none";
             saveBook()
+        } else if (bookPages === ""){
+
         }
         //display new book after myLibrary.push()
         dispalyLibrary(myLibrary)
         //reset form after preventdefault()
         form.reset();
-
     });
 
 document.getElementById("book-container").addEventListener('click', (button) => {
     button.stopPropagation()
     if(button.target.nodeName === "BUTTON"){
-        console.log(button)
         let pos = button.target.dataset.index
         parseInt(pos);
         let removed = myLibrary.splice(pos, 1);
@@ -57,7 +56,6 @@ document.getElementById("book-container").addEventListener('click', (button) => 
         button.target.parentNode.parentNode.remove();
 } else if (button.target.nodeName == "INPUT"){
         let pos = button.target.dataset.index
-        console.log(pos)
         let update = myLibrary[pos];
         if(!update.read){
             update.read = true;
@@ -88,21 +86,22 @@ function dispalyLibrary(arr){
                     }else{
                        bookHTML += `<input id="checkMe" data-index="${index}" type="checkbox">`
                     }
-                bookHTML += `
+                        bookHTML += `
                         </div>
                         <div class="book-button-con">
                             <button data-index="${index}" class="remove">Remove</button>
                         </div>
-                    </div>
-             `;
+                    </div> `;
 
     });
     bookContainer.innerHTML = bookHTML;
 };
 //SET books to local sotrage
+
 function saveBook(){
    localStorage.setItem('theLibrary', JSON.stringify(myLibrary))
 }
+
 // GET books from local storage
 function loadBooks(){
     if(localStorage !== true){
@@ -114,7 +113,10 @@ function loadBooks(){
         return
     }
 }
+
 loadBooks();
+
+
 //Modal Close
 modalClose.addEventListener('click', () => {
     overlay.style.display = "none"
@@ -122,22 +124,4 @@ modalClose.addEventListener('click', () => {
 
 
 
-//this function gets current button elements and returns as a variable to pass to applyEvent()
-// function getCards(){
-// let removeBtns = document.querySelectorAll('.remove');
-// Array.from(removeBtns);
-// return removeBtns;
-// }
-// function applyEvent(){
-//     let usetheseBtn = getCards();
-//     //remove child
-//     //mylibSplice is a named function for !this! reference on clicked button to remove with parentNode
-//     usetheseBtn.forEach(btn => {btn.addEventListener('click', function mylibSplice() {
-//         let pos = btn.dataset.index;
-//         parseInt(pos);
-//         let removed = myLibrary.splice(pos, 1);
-//         console.log(myLibrary)
-//         saveBook();
-//         this.parentNode.parentNode.remove();
 
-// })})};
